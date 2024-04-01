@@ -1,0 +1,21 @@
+<h1>app component</h1>
+<ul>
+  <li *ngFor="let item of data; let i = index">
+    <div *ngIf="!item.editMode">
+      {{item.name}} <br>
+      {{item.id}}
+      <button (click)="toggleEditMode(item)">Edit</button>
+      <button (click)="deleteData(item)">Delete</button>
+    </div>
+    <div *ngIf="item.editMode">
+      <input type="text" #editInput [value]="item.name">
+      <button (click)="updateData(item, editInput.value)">Update</button>
+      <button (click)="cancelUpdate(item)">Cancel</button>
+    </div>
+  </li>
+</ul>
+
+<input type="text" #nameInput placeholder="Enter Name">
+<button id="postButton" (click)="postData(nameInput.value)">Post Data to API</button>
+
+<router-outlet></router-outlet>
